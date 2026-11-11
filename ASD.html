@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Звёздная степь — гид по ночному небу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0b1026; --deep:#141b3d; --dusk:#f0a35e; --rose:#c9647a; --moon:#eef1f8; --mist:#5fa8a0; --dim:#9aa4c4;
+  --serif:"Fraunces",Georgia,serif; --sans:"Manrope",system-ui,sans-serif;
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--night);color:var(--moon);font:400 17px/1.65 var(--sans);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--dusk);outline-offset:3px}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;
+  background:linear-gradient(180deg,#070b1d 0%,var(--night) 45%,#2a2552 78%,#8a4a64 92%,var(--dusk) 100%)}
+#sky{position:absolute;inset:0;width:100%;height:100%}
+.hero-text{position:relative;z-index:2;padding:0 clamp(20px,6vw,90px);max-width:1000px;margin-bottom:12vh}
+h1{font:300 clamp(48px,10vw,140px)/.95 var(--serif);letter-spacing:-.02em;margin:0 0 24px}
+h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+h1 .w span{display:inline-block;transform:translateY(110%);animation:rise 1.3s cubic-bezier(.2,.8,.2,1) forwards}
+h1 .w:nth-child(2) span{animation-delay:.25s;font-weight:600;font-style:italic}
+@keyframes rise{to{transform:none}}
+.lead{max-width:46ch;color:#cfd6ee;font-size:clamp(17px,2vw,21px);opacity:0;animation:fade 1.2s .9s forwards}
+@keyframes fade{to{opacity:1}}
+.cta{display:inline-block;margin-top:28px;padding:14px 26px;border-radius:999px;background:var(--dusk);color:#2a1a0e;font-weight:700;text-decoration:none;
+  opacity:0;animation:fade 1s 1.2s forwards;transition:transform .25s,box-shadow .25s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(240,163,94,.4)}
+.horizon{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:clamp(110px,22vh,220px);z-index:1}
+
+/* SECTIONS */
+section.s{padding:clamp(70px,12vw,140px) clamp(20px,6vw,90px);max-width:1200px;margin:0 auto}
+h2{font:300 clamp(34px,5vw,60px)/1.05 var(--serif);margin:0 0 16px;letter-spacing:-.01em}
+.sub{color:var(--dim);max-width:52ch;margin:0 0 44px}
+
+/* MOON */
+.moon-wrap{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(30px,6vw,80px);align-items:center}
+.moon-box{position:relative;justify-self:center}
+.moon-box::before{content:"";position:absolute;inset:-40px;border-radius:50%;background:radial-gradient(circle,rgba(238,241,248,.18),transparent 65%);transition:opacity .4s}
+#moon{position:relative;width:100%;max-width:320px;height:auto;display:block}
+.phase-name{font:600 clamp(26px,4vw,40px)/1.1 var(--serif);margin:0 0 6px}
+.phase-note{color:var(--dim);min-height:3.3em;margin:0 0 28px}
+input[type=range]{width:100%;accent-color:var(--dusk);height:32px}
+.hint{font-size:14px;color:var(--dim)}
+
+/* SEASONS */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.tab{font:500 16px var(--sans);color:var(--moon);background:transparent;border:1px solid rgba(238,241,248,.25);padding:10px 22px;border-radius:999px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
+.tab:hover{border-color:var(--moon)}
+.tab[aria-selected=true]{background:var(--moon);color:var(--night);border-color:var(--moon)}
+.panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.item{padding:26px;border-radius:18px;background:linear-gradient(160deg,var(--deep),#10163a);border-left:3px solid var(--c,var(--dusk));animation:pop .5s cubic-bezier(.2,.8,.2,1) backwards}
+.item:nth-child(2){animation-delay:.08s}.item:nth-child(3){animation-delay:.16s}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.98)}}
+.item h3{font:600 22px/1.2 var(--serif);margin:0 0 8px}
+.item p{margin:0;color:#c3cbe6;font-size:16px}
+
+/* SPACEPORT */
+.port{background:var(--deep);border-radius:28px;padding:clamp(28px,5vw,64px);position:relative;overflow:hidden}
+.port::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;border-radius:50%;border:1px solid rgba(240,163,94,.35);box-shadow:0 0 0 40px rgba(240,163,94,.05),0 0 0 90px rgba(240,163,94,.03)}
+.line{position:relative;margin:30px 0 0;padding-left:30px;border-left:1px solid rgba(238,241,248,.25);display:grid;gap:30px;max-width:620px}
+.line div{position:relative}
+.line div::before{content:"";position:absolute;left:-36px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--dusk);box-shadow:0 0 0 6px rgba(240,163,94,.2)}
+.line b{font:600 26px var(--serif);display:block}
+.line span{color:#c3cbe6}
+
+footer{padding:60px 20px 80px;text-align:center;color:var(--dim);font-size:15px}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+
+@media(max-width:720px){.moon-wrap{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}
+  h1 .w span{transform:none}.lead,.cta{opacity:1}.rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="hero-text">
+    <h1><span class="w"><span>Звёздная</span></span> <span class="w"><span>степь</span></span></h1>
+    <p class="lead">Гид по ночному небу над казахской степью: что смотреть, когда смотреть и почему здесь так темно.</p>
+    <a class="cta" href="#moon-s">Начать с Луны</a>
+  </div>
+  <svg class="horizon" viewBox="0 0 1440 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 150 C180 110 340 170 560 140 S980 100 1180 140 1360 150 1440 125 V220 H0Z" fill="#1d1a3d" opacity=".75"/>
+    <path d="M0 185 C240 150 420 200 700 175 S1150 140 1440 180 V220 H0Z" fill="#0e1126"/>
+    <g fill="#070914"><path d="M1040 190 q0-52 56-52 q56 0 56 52Z"/><rect x="1092" y="132" width="8" height="12"/><path d="M1096 132 l-14-8 h28Z"/></g>
+    <path d="M0 205 C300 190 600 215 900 200 S1300 195 1440 205 V220 H0Z" fill="#070914"/>
+  </svg>
+</header>
+
+<section class="s rv" id="moon-s">
+  <h2>Луна решает, сколько звёзд вы увидите</h2>
+  <p class="sub">Полная Луна затмевает слабые звёзды и Млечный Путь. Двигайте ползунок и смотрите, как меняется фаза за лунный месяц.</p>
+  <div class="moon-wrap">
+    <div class="moon-box"><canvas id="moon" width="640" height="640" role="img" aria-label="Текущая фаза Луны"></canvas></div>
+    <div>
+      <p class="phase-name" id="pname">Новолуние</p>
+      <p class="phase-note" id="pnote"></p>
+      <input id="slider" type="range" min="0" max="100" value="0" aria-label="Фаза Луны">
+      <p class="hint">Один оборот ползунка — около 29,5 суток.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s rv" id="seasons">
+  <h2>Что смотреть в каждый сезон</h2>
+  <p class="sub">Небо меняется вместе с временами года. Выберите сезон.</p>
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="panel" id="panel" role="tabpanel"></div>
+</section>
+
+<section class="s rv" id="port">
+  <div class="port">
+    <h2>Небо над космодромом</h2>
+    <p class="sub" style="margin-bottom:0">Казахстанская степь знает не только звёзды, но и тех, кто к ним летает: Байконур стоял у начала космической эры.</p>
+    <div class="line">
+      <div><b>4 октября 1957</b><span>С Байконура стартовал первый искусственный спутник Земли.</span></div>
+      <div><b>12 апреля 1961</b><span>Юрий Гагарин отправился в первый в истории полёт человека в космос.</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>Смотрите вверх, пока вокруг темно. Чем дальше от города, тем больше звёзд.</footer>
+
+<script>
+/* ---------- Starfield + meteors ---------- */
+(function(){
+  var c=document.getElementById('sky'),x=c.getContext('2d'),W,H,stars=[],meteors=[],mx=0,my=0,tx=0,ty=0;
+  var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){
+    var d=Math.min(devicePixelRatio||1,2);W=c.clientWidth;H=c.clientHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0);
+    var n=Math.round(W*H/2800);stars=[];
+    for(var i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H*.85,r:Math.random()*1.3+.2,z:Math.random()*.9+.1,p:Math.random()*6.28,s:Math.random()*1.5+.5,t:Math.random()<.18?'#f0c79a':Math.random()<.3?'#a9c4ff':'#ffffff'});
+  }
+  addEventListener('resize',size);size();
+  addEventListener('pointermove',function(e){tx=(e.clientX/innerWidth-.5);ty=(e.clientY/innerHeight-.5)});
+  function meteor(){var sx=Math.random()*W*.8+W*.1;meteors.push({x:sx,y:Math.random()*H*.35,vx:-7-Math.random()*5,vy:3.5+Math.random()*3,l:1})}
+  var next=2200;
+  function frame(t){
+    mx+=(tx-mx)*.05;my+=(ty-my)*.05;
+    x.clearRect(0,0,W,H);
+    for(var i=0;i<stars.length;i++){
+      var s=stars[i],a=calm?.8:.45+.55*Math.sin(t/1000*s.s+s.p);
+      x.globalAlpha=Math.max(.1,a);x.fillStyle=s.t;
+      x.beginPath();x.arc(s.x-mx*40*s.z,s.y-my*24*s.z,s.r,0,6.283);x.fill();
+    }
+    if(!calm){
+      if(t>next){meteor();next=t+2500+Math.random()*4500}
+      for(var j=meteors.length-1;j>=0;j--){
+        var m=meteors[j];m.x+=m.vx;m.y+=m.vy;m.l-=.014;
+        var g=x.createLinearGradient(m.x,m.y,m.x-m.vx*9,m.y-m.vy*9);
+        g.addColorStop(0,'rgba(255,245,230,'+Math.max(m.l,0)+')');g.addColorStop(1,'rgba(255,245,230,0)');
+        x.globalAlpha=1;x.strokeStyle=g;x.lineWidth=1.8;x.beginPath();x.moveTo(m.x,m.y);x.lineTo(m.x-m.vx*9,m.y-m.vy*9);x.stroke();
+        if(m.l<=0)meteors.splice(j,1);
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+/* ---------- Moon phases ---------- */
+(function(){
+  var c=document.getElementById('moon'),x=c.getContext('2d'),R=300,C=320;
+  var names=[[0,'Новолуние','Небо самое тёмное. Лучшее время для Млечного Пути и далёких галактик.'],
+    [6,'Растущий серп','Тонкий серп виден сразу после заката и быстро заходит. Звёзд ещё много.'],
+    [20,'Первая четверть','Луна светит до полуночи. Хорошо смотреть её кратеры в телескоп вдоль границы света и тени.'],
+    [35,'Растущая Луна','Яркий свет начинает заглушать слабые звёзды.'],
+    [47,'Полнолуние','Луна светит всю ночь. Слабые объекты не разглядеть, зато видно степь без фонаря.'],
+    [53,'Убывающая Луна','Луна восходит поздно вечером. Первая половина ночи снова тёмная.'],
+    [72,'Последняя четверть','Луна восходит около полуночи. Перед рассветом она освещает горизонт.'],
+    [88,'Убывающий серп','Серп виден перед рассветом. Вечернее небо тёмное.']];
+  var nm=document.getElementById('pname'),nt=document.getElementById('pnote'),sl=document.getElementById('slider');
+  function draw(v){
+    var p=v/100,k=Math.cos(2*Math.PI*p),waxing=p<=.5;
+    x.clearRect(0,0,640,640);
+    x.fillStyle='#161d42';x.beginPath();x.arc(C,C,R,0,6.283);x.fill();
+    x.save();if(!waxing){x.translate(640,0);x.scale(-1,1)}
+    var g=x.createRadialGradient(C-60,C-60,40,C,C,R);g.addColorStop(0,'#fbfcff');g.addColorStop(1,'#cdd4e6');
+    x.fillStyle=g;x.beginPath();x.arc(C,C,R,-Math.PI/2,Math.PI/2,false);
+    x.ellipse(C,C,Math.abs(k)*R,R,0,Math.PI/2,-Math.PI/2,k>0);
+    x.closePath();x.fill();
+    x.fillStyle='rgba(120,130,160,.22)';
+    [[C+80,C-90,46],[C+30,C+70,30],[C+140,C+30,24],[C-70,C-30,38],[C-110,C+100,26]].forEach(function(m){x.beginPath();x.arc(m[0],m[1],m[2],0,6.283);x.fill()});
+    x.restore();
+    x.strokeStyle='rgba(238,241,248,.18)';x.lineWidth=2;x.beginPath();x.arc(C,C,R,0,6.283);x.stroke();
+    var cur=names[0];names.forEach(function(n){if(v>=n[0])cur=n});
+    nm.textContent=cur[1];nt.textContent=cur[2];
+  }
+  sl.addEventListener('input',function(){draw(+sl.value)});
+  draw(0);
+})();
+
+/* ---------- Seasons ---------- */
+(function(){
+  var data={
+    'Весна':[['Большая Медведица','Весной ковш стоит почти над головой. По его ручке легко найти яркую звезду Арктур.','#f0a35e'],['Лириды','Метеорный поток в конце апреля. Метеоров немного, но они яркие.','#5fa8a0'],['Созвездие Льва','Заметная «голова» из звёзд, похожая на вопросительный знак.','#c9647a']],
+    'Лето':[['Млечный Путь','Летом он виден лучше всего: светлая полоса пересекает небо от горизонта до горизонта.','#eef1f8'],['Персеиды','Главный звездопад года. Пик около 12 августа, до сотни метеоров в час в тёмном месте.','#f0a35e'],['Летний треугольник','Вега, Денеб и Альтаир: три яркие звезды, по которым легко ориентироваться.','#5fa8a0']],
+    'Осень':[['Галактика Андромеды','В тёмном небе видна глазом как слабое пятнышко. До неё около 2,5 миллиона световых лет.','#c9647a'],['Плеяды','Компактное скопление, которое поднимается всё раньше. Невооружённым глазом видно 6–7 звёзд.','#5fa8a0'],['Леониды','Метеорный поток в середине ноября. Лучше всего смотреть после полуночи.','#f0a35e']],
+    'Зима':[['Орион','Самое узнаваемое созвездие: три звезды пояса в ряд и красный Бетельгейзе.','#f0a35e'],['Сириус','Самая яркая звезда ночного неба. Ищите её по линии пояса Ориона вниз и влево.','#eef1f8'],['Геминиды','Один из самых обильных потоков. Пик в середине декабря, метеоров много и они медленные.','#5fa8a0']]
+  };
+  var tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+  function show(n){
+    panel.innerHTML='';
+    data[n].forEach(function(d){
+      var e=document.createElement('div');e.className='item';e.style.setProperty('--c',d[2]);
+      e.innerHTML='<h3>'+d[0]+'</h3><p>'+d[1]+'</p>';panel.appendChild(e);
+    });
+    tabs.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-selected',b.textContent===n)});
+  }
+  Object.keys(data).forEach(function(n){
+    var b=document.createElement('button');b.className='tab';b.setAttribute('role','tab');b.textContent=n;
+    b.onclick=function(){show(n)};tabs.appendChild(b);
+  });
+  show('Лето');
+})();
+
+/* ---------- Reveal on scroll ---------- */
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
