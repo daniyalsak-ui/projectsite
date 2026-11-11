@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Фазы Луны — Звёздная степь</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="nav"><a class="brand" href="index.html">Звёздная степь</a><div class="links"><a href="index.html">Главная</a><a href="moon.html" aria-current="page">Луна</a><a href="seasons.html">Сезоны</a><a href="baikonur.html">Байконур</a></div></nav>
+<section class="s rv page">
+  <h2>Луна решает, сколько звёзд вы увидите</h2>
+  <p class="sub">Полная Луна затмевает слабые звёзды и Млечный Путь. Двигайте ползунок и смотрите, как меняется фаза за лунный месяц.</p>
+  <div class="moon-wrap">
+    <div class="moon-box"><canvas id="moon" width="640" height="640" role="img" aria-label="Текущая фаза Луны"></canvas></div>
+    <div>
+      <p class="phase-name" id="pname">Новолуние</p>
+      <p class="phase-note" id="pnote"></p>
+      <input id="slider" type="range" min="0" max="100" value="0" aria-label="Фаза Луны">
+      <p class="hint">Один оборот ползунка — около 29,5 суток.</p>
+    </div>
+  </div>
+</section>
+<footer>Смотрите вверх, пока вокруг темно. Чем дальше от города, тем больше звёзд.</footer>
+<script src="moon.js"></script>
+<script src="reveal.js"></script>
+</body>
+</html>
